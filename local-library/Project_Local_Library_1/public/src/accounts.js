@@ -1,14 +1,15 @@
+// return matching id in array as object
 function findAccountById(accounts, id) {
   // 2 parameters: accounts, id
   // .find function to return single object
   let result = accounts.find(account => account.id === id);
-  // return matching array as object
+  //return result
   return result;
 }
 
+// sorted array of objects by last name
 function sortAccountsByLastName(accounts) {
   // parameter: accounts
-  // sorted array of objects by last name
   // .sort function to sort last names alphabetically
   let result = accounts.sort((nameA, nameB) => {
     //compare A to Z of 2 properties
@@ -19,10 +20,10 @@ function sortAccountsByLastName(accounts) {
   return result;
 }
 
+// number of times an account id appear in books borrow array
 function numberOfBorrows(account, books) {
   // 2 parameters: account object, array of all books
-  // number of times an account id appear in books borrow array
-  // .reduce function with 
+  // .reduce function with parameter: accumulator, borrows array, integer value
   let result = books.reduce((acc, {borrows: borrowArr}) => {
     // get array of ids for borrowArr
     let borrowed = borrowArr.map(element => element.id);
@@ -42,7 +43,12 @@ function numberOfBorrows(account, books) {
   return result;
 }
 
-function getBooksPossessedByAccount(account, books, authors) {}
+//return array of books checked out by account
+function getBooksPossessedByAccount(account, books, authors) {
+  // 3 parameters: given account, array of book objects, array of author objects
+  // match account id if book isn't returned
+  // books possessed have authors in them
+}
 
 module.exports = {
   findAccountById,
