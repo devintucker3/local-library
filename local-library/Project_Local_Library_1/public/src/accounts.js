@@ -48,6 +48,24 @@ function getBooksPossessedByAccount(account, books, authors) {
   // 3 parameters: given account, array of book objects, array of author objects
   // match account id if book isn't returned
   // books possessed have authors in them
+  // filter books borrowed to return array
+  const theBook = books
+    .filter((book) => {
+      const currentBook = book.borrows[0];
+      // return if borrow.returned === false AND account id with checked out book === account id
+      return !currentBook.returned && currentBook.id === account.id;
+    })
+    // array with new values of author added to array
+    .map((book) => {
+      // find author id equal to authorId in books array
+      const author = authors.find((author) => {
+        return author.id === book.authorId;
+      });
+      // return filtered array of objects with spreaded book object and author name 
+      return { ...book, author };
+    });
+  // return array of books matching account
+  return theBook;
 }
 
 module.exports = {
