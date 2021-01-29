@@ -81,26 +81,35 @@ function getMostPopularBooks(books) {
 
 // returns array of most popular authors (top 5 based on books checked out)
 function getMostPopularAuthors(books, authors) {
-  // 2 parameters: array of books, array of authors
-  // popularity is how many books by the author multipled by amount of borrows
   // set array variable
-  let obj = {};
-  // loop through books
-  books.forEach(book => {
-    // pull in another function  for finding author by id
-    let authorOfBook = findAuthorById(authors, book.authorId);
-    // make variable for author's first and last name
-    let authorName = authorOfBook.name.first + authorOfBook.name.last;
-    // variable for length of borrows for book
-    let bookBorrows = book.borrows.length;
-    // add authorName to obj and amount of borrows for a book
-    obj[authorName] ? obj[authorName] += bookBorrows : obj[authorName] = bookBorrows;
+  let returnArr = [];
+  // loop through authors array
+  authors.forEach(author => {
+    // define object with name and count in it
+    let returnAuthor = {
+      name: `${author.name.first} ${author.name.last}`,
+      count: 0
+    }
+    // loop through books array
+    books.forEach(book => {
+      // if author ids match
+      if (book.authorId === author.id) {
+        // add number of borrows for books to author count key
+        returnAuthor.count += book.borrows.length
+      }
+    })
+    // push author objects into array
+    returnArr.push(returnAuthor)
   })
-  // each object in the returned array has 'name w genre' and 'count: total books with genre' key:
-  let newArr = _newObjectstoArray(obj);
-  // return array with top 5 popular authors (sort and slice)
-  return _sortAndSlice(newArr, 5);
+  // return array of popular authors (.sort and .slice function)
+  return _sortAndSlice(returnArr, 5)
 }
+/*
+***** Had another way of doing this function that technically worked and everyone in my group 
+agreed it was similar to theirs, but the tests didn't like it so someone from ThinkChat gave 
+a different answer for me to walk through.
+*/
+
 
 // HELPER FUNCTIONS
 //slice and sort helper function
