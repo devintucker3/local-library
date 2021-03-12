@@ -1,19 +1,21 @@
 {
-  "name": "module-5",
+  "name": "project-local-library",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "live-server public/",
+    "test": "mocha test/*.test.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/devintucker3/local-library.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/devintucker3/local-library/issues"
-  },
-  "homepage": "https://github.com/devintucker3/local-library#readme"
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "live-server": "^1.2.1",
+    "mocha": "^8.1.1"
+  }
 }
